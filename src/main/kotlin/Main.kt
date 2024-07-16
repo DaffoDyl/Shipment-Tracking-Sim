@@ -15,19 +15,20 @@ import androidx.compose.ui.window.application
 @Composable
 @Preview
 fun App() {
-    var text by remember { mutableStateOf("Hello, World!") }
+    var inputText by remember { mutableStateOf("") }
+    var buttonText by remember { mutableStateOf("Track") }
 
     MaterialTheme {
         Row {
             TextField(
-                value = text,
-                onValueChange = { text = it },
-                label = { Text("Label") }
+                value = inputText,
+                onValueChange = { inputText = it },
+                placeholder = { Text("Shipment ID") },
             )
             Button(onClick = {
-                text = "Hello, Desktop!"
+                buttonText = "Tracked"
             }) {
-                Text(text)
+                Text(buttonText)
             }
         }
 

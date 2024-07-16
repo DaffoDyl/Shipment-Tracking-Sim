@@ -2,11 +2,10 @@ class Shipment(
     private var id: String,
     private var status: String,
 ) {
-    private var currentLocation: String = ""
-    private var expectedDeliveryDateTimestamp: Long = 0
+    private var currentLocation: String = "..."
+    private var expectedDeliveryTimestamp: Long = 0
     private val notes: MutableList<String> = mutableListOf()
     private val updateHistory: MutableList<ShippingUpdate> = mutableListOf()
-
 
     fun getId(): String { return id }
     fun setId(id: String) { this.id = id }
@@ -14,8 +13,8 @@ class Shipment(
     fun setStatus(status: String) { this.status = status }
     fun getCurrentLocation(): String { return currentLocation }
     fun setCurrentLocation(location: String) { currentLocation = location }
-    fun getExpectedDeliveryDateTimestamp(): Long { return expectedDeliveryDateTimestamp }
-    fun setExpectedDeliveryDateTimestamp(timestamp: Long) {expectedDeliveryDateTimestamp = timestamp}
+    fun getExpectedDeliveryTimestamp(): Long { return expectedDeliveryTimestamp }
+    fun setExpectedDeliveryTimestamp(timestamp: Long) {expectedDeliveryTimestamp = timestamp}
     fun getNotes() : List<String> { return notes }
     fun getHistory() : List<ShippingUpdate> { return updateHistory }
 

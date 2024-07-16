@@ -1,3 +1,7 @@
 package shipmentBehavior
 
-interface ShipmentBehavior { fun updateShipment(status: String, id: String, timeStamp: Long) }
+import Shipment
+
+interface ShipmentBehavior {
+    fun updateShipment(shipment: Shipment?, update: List<String>)
+}

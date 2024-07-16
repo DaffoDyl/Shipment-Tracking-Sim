@@ -1,7 +1,9 @@
 package shipmentBehavior
 
+import Shipment
+
 class DeliverShipment: ShipmentBehavior {
-    override fun updateShipment(status: String, id: String, timeStamp: Long) {
+    override fun updateShipment(shipment: Shipment?, update: List<String>) {
         TODO("Not yet implemented")
     }
 }

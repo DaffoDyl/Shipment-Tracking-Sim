@@ -3,7 +3,7 @@ class TrackingSimulator {
 
     fun findShipment(id: String) : Shipment? {
         for (shipment in shipments) {
-            if (shipment.id == id) {
+            if (shipment.getId() == id) {
                 return shipment
             }
         }

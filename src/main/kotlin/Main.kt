@@ -1,7 +1,9 @@
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,11 +18,19 @@ fun App() {
     var text by remember { mutableStateOf("Hello, World!") }
 
     MaterialTheme {
-        Button(onClick = {
-            text = "Hello, Desktop!"
-        }) {
-            Text(text)
+        Row {
+            TextField(
+                value = text,
+                onValueChange = { text = it },
+                label = { Text("Label") }
+            )
+            Button(onClick = {
+                text = "Hello, Desktop!"
+            }) {
+                Text(text)
+            }
         }
+
     }
 }
 

@@ -1,7 +1,7 @@
-package shipmentBehavior
+package updateBehavior
 
 import Shipment
 
-interface ShipmentBehavior {
+interface UpdateBehavior {
     fun updateShipment(shipment: Shipment?, update: List<String>)
 }

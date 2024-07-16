@@ -1,18 +1,18 @@
 import kotlinx.coroutines.*
-import shipmentBehavior.*
+import updateBehavior.*
 import java.io.File
 
 class TrackingSimulator {
     private val shipments: MutableList<Shipment> = mutableListOf()
     private val shipmentUpdates = mapOf(
-        Pair("canceled",  CancelShipment()),
-        Pair("created",   CreateShipment()),
-        Pair("delayed",   DelayShipment()),
-        Pair("delivered", DeliverShipment()),
-        Pair("location",  LocateShipment()),
-        Pair("lost",      LoseShipment()),
-        Pair("noteadded", NoteShipment()),
-        Pair("shipped",   ShipShipment()),
+        Pair("created",   CreationUpdate()),
+        Pair("canceled",  StatusUpdate()),
+        Pair("delivered", StatusUpdate()),
+        Pair("lost",      StatusUpdate()),
+        Pair("delayed",   TimeUpdate()),
+        Pair("shipped",   TimeUpdate()),
+        Pair("location",  LocationUpdate()),
+        Pair("noteadded", NotesUpdate()),
     )
 
     fun addShipment(shipment: Shipment) { shipments.add(shipment) }
@@ -31,7 +31,7 @@ class TrackingSimulator {
                 val update = it.split(",")
                 val status = update[0]
                 val id = update[1]
-                if(status == "created") {addShipment(Shipment(status, id))}
+                if(status == "created") { addShipment(Shipment(status, id)) }
                 shipmentUpdates[status]?.updateShipment(findShipment(id), update)
             }
         }

@@ -1,15 +1,15 @@
-package shipmentBehavior
+package updateBehavior
 
 import Shipment
 import ShippingUpdate
 
-class DelayShipment: ShipmentBehavior {
+open class NotesUpdate: UpdateBehavior {
     override fun updateShipment(shipment: Shipment?, update: List<String>) {
         val status: String = update[0]
-        val timestamp: Long = update[2].toLong()
-        val expectedTimestamp: Long = update[3].toLong()
+        val timestamp = update[2].toLong()
+        val note = update[3]
         shipment?.addUpdate(ShippingUpdate(shipment.getStatus(), status, timestamp))
         shipment?.setStatus(status)
-        shipment?.setExpectedDeliveryTimestamp(expectedTimestamp)
+        shipment?.addNote(note)
     }
 }

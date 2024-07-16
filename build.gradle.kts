@@ -29,7 +29,7 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "Shipment_Tracking_Sim"
+            packageName = "Shimpment_Tracking_Sim"
             packageVersion = "1.0.0"
         }
     }

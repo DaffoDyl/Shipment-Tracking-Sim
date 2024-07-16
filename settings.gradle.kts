@@ -13,4 +13,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "Shipment_Tracking_Sim"
+rootProject.name = "Shimpment_Tracking_Sim"

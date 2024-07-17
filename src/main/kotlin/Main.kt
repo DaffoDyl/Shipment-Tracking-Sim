@@ -1,4 +1,5 @@
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.Button
@@ -15,28 +16,36 @@ import androidx.compose.ui.window.application
 @Preview
 fun App() {
     var inputText by remember { mutableStateOf("") }
-    var buttonText by remember { mutableStateOf("Track") }
+    var viewHelper = remember {  mutableStateListOf<TrackerViewHelper>() }
+
 
     MaterialTheme {
-        Row {
-            TextField(
-                value = inputText,
-                onValueChange = { inputText = it },
-                placeholder = { Text("Shipment ID") },
-                modifier = Modifier.weight(1f)
-            )
-            Button(
-                onClick = { buttonText = "Tracked" },
-                modifier = Modifier.height(height = 56.dp)
-            ) {
-                Text(buttonText)
+        Column {
+            Row {
+                TextField(
+                    value = inputText,
+                    onValueChange = { inputText = it },
+                    placeholder = { Text("Shipment ID") },
+                    modifier = Modifier.weight(1f)
+                )
+                Button(
+                    onClick = {viewHelper.add(TrackerViewHelper(Shipment(inputText, "dummy")))},
+                    modifier = Modifier.height(height = 56.dp)
+                ) {
+                    Text("Track")
+                }
+            }
+            for (view in viewHelper) {
+                Text("${view.shipmentId}")
             }
         }
+
 
     }
 }
 
 fun main() = application {
+
     Window(onCloseRequest = ::exitApplication) {
         App()
     }

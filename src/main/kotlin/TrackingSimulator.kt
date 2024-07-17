@@ -28,7 +28,6 @@ class TrackingSimulator() {
 
         File("src/data/test.txt").forEachLine { //Each line contains in order: {status, id, timestamp, conditional info}
             updates.add(it.split(","))
-
         }
         for (update in updates) {
             val status = update[0]

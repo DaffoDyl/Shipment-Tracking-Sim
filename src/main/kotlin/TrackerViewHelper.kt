@@ -20,7 +20,6 @@ class TrackerViewHelper(shipment: Shipment): ShipmentObserver {
     init {
         shipmentNotes = setNotes(shipment)
         shipmentUpdateHistory = setHistory(shipment)
-        shipment.subscribe(this)
     }
 
     override fun notify(shipment: Shipment) {
@@ -31,8 +30,12 @@ class TrackerViewHelper(shipment: Shipment): ShipmentObserver {
         this.shipmentNotes = setNotes(shipment)
         this.shipmentUpdateHistory = setHistory(shipment)
     }
-    fun trackShipment(id: String) {}
-    fun stopTracking() {}
+    fun trackShipment(shipment: Shipment) {
+        shipment.subscribe(this)
+    }
+    fun stopTracking(shipment: Shipment) {
+        shipment.unsubscribe(this)
+    }
     private fun toDateString(stamp: Long): String {
         if (stamp == 0L) {return "unknown"}
         val date = Date(stamp)

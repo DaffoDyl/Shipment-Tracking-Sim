@@ -39,14 +39,20 @@ fun App() {
                 }
             }
             for (id in viewHelper) {
-                val ship = trackingSim.findShipment(id)
+                val shipment = trackingSim.findShipment(id)
                 Column {
-                    if (ship != null) {
-                        val view = TrackerViewHelper(ship)
+                    if (shipment != null) {
+                        val view = TrackerViewHelper(shipment)
+                        view.trackShipment(shipment)
                         Row {
-                            Text("Tracking shipment: ${view.shipmentId}")
+                            Text("Tracking shipment: ")
+                            Text(
+                                text = view.shipmentId,
+                                modifier = Modifier.weight(1f))
                             Button(
-                                onClick = { viewHelper.remove(id) },
+                                onClick = {
+                                    viewHelper.remove(id)
+                                    view.stopTracking(shipment) },
                                 modifier = Modifier.padding(4.dp)
                             ) {
                                 Text("X")
@@ -63,9 +69,10 @@ fun App() {
                         for (note in view.shipmentNotes) {
                             Text(note)
                         }
-                    } else {
+                    }
+                    else {
                         Row {
-                            Text("Tracking shipment: $id does not exist")
+                            Text("Id does not exist: $id")
                             Button(
                                 onClick = { viewHelper.remove(id) },
                                 modifier = Modifier.padding(4.dp)

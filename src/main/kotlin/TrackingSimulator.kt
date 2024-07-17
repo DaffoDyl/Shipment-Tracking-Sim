@@ -2,7 +2,7 @@ import kotlinx.coroutines.*
 import updateBehavior.*
 import java.io.File
 
-class TrackingSimulator {
+class TrackingSimulator() {
     private val shipments: MutableList<Shipment> = mutableListOf()
     private val shipmentUpdates = mapOf(
         Pair("created",   InitialUpdate()),
@@ -24,7 +24,7 @@ class TrackingSimulator {
         }
         return null
     }
-    fun runSimulation()= runBlocking {
+    fun runSimulation() = runBlocking {
         File("src/data/test.txt").forEachLine { //Each line contains in order: {status, id, timestamp, conditional info}
             launch {
                 delay(1000L)

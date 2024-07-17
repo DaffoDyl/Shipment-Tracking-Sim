@@ -2,7 +2,7 @@ class Shipment(
     private var id: String,
     private var status: String,
 ) {
-    private var currentLocation: String = "..."
+    private var currentLocation: String = "unknown"
     private var expectedDeliveryTimestamp: Long = 0
     private val notes: MutableList<String> = mutableListOf()
     private val updateHistory: MutableList<ShippingUpdate> = mutableListOf()

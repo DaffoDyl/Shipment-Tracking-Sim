@@ -11,13 +11,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 @Composable
 @Preview
 fun App() {
     var inputText by remember { mutableStateOf("") }
-    var viewHelper = remember {  mutableStateListOf<TrackerViewHelper>() }
-
+    val viewHelper = remember { mutableStateListOf<TrackerViewHelper>() }
 
     MaterialTheme {
         Column {
@@ -29,24 +30,49 @@ fun App() {
                     modifier = Modifier.weight(1f)
                 )
                 Button(
-                    onClick = {viewHelper.add(TrackerViewHelper(Shipment(inputText, "dummy")))},
+                    onClick = {
+
+                        viewHelper.add(TrackerViewHelper(Shipment(inputText, "dummy"))) },
                     modifier = Modifier.height(height = 56.dp)
                 ) {
                     Text("Track")
                 }
             }
             for (view in viewHelper) {
-                Text("${view.shipmentId}")
+                Column {
+                    Row {
+                        Text("Tracking shipment: ${view.shipmentId}")
+                        Button(
+                            onClick = {},
+                        ) {
+                            Text("X")
+                        }
+                    }
+                    Text("Status: ${view.shipmentStatus}")
+                    Text("Location: ${view.shipmentLocation}")
+                    Text("Expected Delivery: ${view.expectedShipmentDeliveryDate}")
+                    Text("Status Updates:")
+                    for (update in view.shipmentUpdateHistory) {
+                        Text(update)
+                    }
+                    Text("Notes:")
+                    for (note in view.shipmentNotes) {
+                        Text(note)
+                    }
+                }
             }
         }
 
 
     }
 }
+val trackingSim = TrackingSimulator()
 
-fun main() = application {
-
-    Window(onCloseRequest = ::exitApplication) {
-        App()
+fun main() = runBlocking {
+    async { trackingSim.runSimulation() }
+    application {
+        Window(onCloseRequest = ::exitApplication) {
+            App()
+        }
     }
 }

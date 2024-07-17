@@ -1,5 +1,7 @@
 import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TrackerViewHelper(shipment: Shipment): ShipmentObserver {
     var shipmentId by mutableStateOf(shipment.getId())
@@ -33,8 +35,9 @@ class TrackerViewHelper(shipment: Shipment): ShipmentObserver {
     fun stopTracking() {}
     private fun toDateString(stamp: Long): String {
         if (stamp == 0L) {return "unknown"}
-        return java.time.format.DateTimeFormatter.ISO_INSTANT
-            .format(java.time.Instant.ofEpochSecond(stamp))
+        val date = Date(stamp)
+        val format = SimpleDateFormat("yyyy.MM.dd HH:mm")
+        return format.format(date)
     }
     private fun setNotes(shipment: Shipment): SnapshotStateList<String> {
         val notes = mutableStateListOf<String>()

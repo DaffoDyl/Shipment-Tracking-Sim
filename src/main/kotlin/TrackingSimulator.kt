@@ -5,7 +5,6 @@ import java.io.File
 class TrackingSimulator() {
     private val shipments: MutableList<Shipment> = mutableListOf()
     private val shipmentUpdates = mapOf(
-        Pair("created",   InitialUpdate()),
         Pair("canceled",  StatusUpdate()),
         Pair("delivered", StatusUpdate()),
         Pair("lost",      StatusUpdate()),

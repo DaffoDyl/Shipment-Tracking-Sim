@@ -11,14 +11,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.launch
 
 @Composable
 @Preview
 fun App() {
     var inputText by remember { mutableStateOf("") }
     val viewHelper = remember { mutableStateListOf<TrackerViewHelper>() }
+    val coroutineScope = rememberCoroutineScope()
+    coroutineScope.launch { trackingSim.runSimulation() }
 
     MaterialTheme {
         Column {
@@ -68,11 +69,8 @@ fun App() {
 }
 val trackingSim = TrackingSimulator()
 
-fun main() = runBlocking {
-    async { trackingSim.runSimulation() }
-    application {
-        Window(onCloseRequest = ::exitApplication) {
-            App()
-        }
+fun main() = application {
+    Window(onCloseRequest = ::exitApplication) {
+        App()
     }
 }

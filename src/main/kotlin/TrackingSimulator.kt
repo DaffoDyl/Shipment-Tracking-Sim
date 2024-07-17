@@ -31,7 +31,7 @@ class TrackingSimulator() {
                 val update = it.split(",")
                 val status = update[0]
                 val id = update[1]
-                if(status == "created") { addShipment(Shipment(status, id)) }
+                if(status == "created") { addShipment(Shipment(id, status)) }
                 shipmentUpdates[status]?.updateShipment(findShipment(id), update)
             }
         }

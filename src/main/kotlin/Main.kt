@@ -1,8 +1,5 @@
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -29,7 +26,8 @@ fun App() {
                     value = inputText,
                     onValueChange = { inputText = it },
                     placeholder = { Text("Shipment ID") },
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
+
                 )
                 Button(
                     onClick = { viewHelper.add(inputText) },
@@ -40,7 +38,7 @@ fun App() {
             }
             for (id in viewHelper) {
                 val shipment = trackingSim.findShipment(id)
-                Column {
+                Column(Modifier.padding(bottom = 6.dp)) {
                     if (shipment != null) {
                         val view = TrackerViewHelper(shipment)
                         view.trackShipment(shipment)

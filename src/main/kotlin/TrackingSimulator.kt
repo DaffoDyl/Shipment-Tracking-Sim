@@ -24,16 +24,19 @@ class TrackingSimulator() {
         }
         return null
     }
-    fun runSimulation() = runBlocking {
+    suspend fun runSimulation()  {
+        val updates = mutableListOf<List<String>>()
+
         File("src/data/test.txt").forEachLine { //Each line contains in order: {status, id, timestamp, conditional info}
-            launch {
-                delay(1000L)
-                val update = it.split(",")
-                val status = update[0]
-                val id = update[1]
-                if(status == "created") { addShipment(Shipment(id, status)) }
-                shipmentUpdates[status]?.updateShipment(findShipment(id), update)
-            }
+            updates.add(it.split(","))
+
+        }
+        for (update in updates) {
+            val status = update[0]
+            val id = update[1]
+            if(status == "created") { addShipment(Shipment(id, status)) }
+            shipmentUpdates[status]?.updateShipment(findShipment(id), update)
+            delay(1000L)
         }
     }
 }

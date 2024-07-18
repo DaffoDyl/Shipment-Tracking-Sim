@@ -14,14 +14,13 @@ class TrackingSimulator() {
         Pair("noteadded", NotesUpdate()),
     )
 
-    fun addShipment(shipment: Shipment) { shipments.add(shipment) }
+    fun addShipment(shipment: Shipment) {
+        shipments.add(shipment)
+    }
     fun findShipment(id: String) : Shipment? {
-        for (shipment in shipments) {
-            if (shipment.getId() == id) {
-                return shipment
-            }
+        return shipments.find {
+            it.getId() == id
         }
-        return null
     }
     suspend fun runSimulation()  {
         val updates = mutableListOf<List<String>>()

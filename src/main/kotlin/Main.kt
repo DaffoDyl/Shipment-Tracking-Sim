@@ -38,7 +38,7 @@ fun App() {
             }
             for (id in viewHelper) {
                 val shipment = trackingSim.findShipment(id)
-                Column(Modifier.padding(bottom = 6.dp)) {
+                Column {
                     if (shipment != null) {
                         val view = TrackerViewHelper(shipment)
                         view.trackShipment(shipment)
@@ -51,7 +51,6 @@ fun App() {
                                 onClick = {
                                     viewHelper.remove(id)
                                     view.stopTracking(shipment) },
-                                modifier = Modifier.padding(4.dp)
                             ) {
                                 Text("X")
                             }

@@ -16,13 +16,15 @@ repositories {
 }
 
 dependencies {
-    // Note, if you develop a library, you should use compose.desktop.common.
-    // compose.desktop.currentOs should be used in launcher-sourceSet
-    // (in a separate module for demo project and in testMain).
-    // With compose.desktop.common you will also lose @Preview functionality
     implementation(compose.desktop.currentOs)
     testImplementation(kotlin("test"))
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.0-M1")
+    implementation("io.ktor:ktor-server-core-jvm:2.3.12")
+    implementation("io.ktor:ktor-server-netty-jvm:2.3.12")
+    implementation("io.ktor:ktor-server-status-pages-jvm:2.3.12")
+    implementation("io.ktor:ktor-server-default-headers-jvm:2.3.12")
+    implementation("org.slf4j:slf4j-api:2.0.12")
+    implementation("org.slf4j:slf4j-simple:2.0.12")
 }
 
 tasks.test {
@@ -40,5 +42,3 @@ compose.desktop {
         }
     }
 }
-
-

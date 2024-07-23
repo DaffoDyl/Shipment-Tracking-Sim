@@ -87,8 +87,9 @@ fun App() {
     }
 }
 val trackingSim = TrackingSimulator()
-
+val trackingServer = TrackingServer()
 fun main() = application {
+    trackingServer.startServer()
     Window(onCloseRequest = ::exitApplication) {
         App()
     }

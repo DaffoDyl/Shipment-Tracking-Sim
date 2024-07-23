@@ -17,7 +17,7 @@ fun App() {
     var inputText by remember { mutableStateOf("") }
     val viewHelper = remember { mutableStateListOf<String>() }
     val coroutineScope = rememberCoroutineScope()
-    coroutineScope.launch { trackingSim.runSimulation() }
+    coroutineScope.launch { trackingServer.runServer() }
 
     MaterialTheme {
         Column {
@@ -27,7 +27,6 @@ fun App() {
                     onValueChange = { inputText = it },
                     placeholder = { Text("Shipment ID") },
                     modifier = Modifier.weight(1f),
-
                 )
                 Button(
                     onClick = { viewHelper.add(inputText) },
@@ -37,7 +36,7 @@ fun App() {
                 }
             }
             for (id in viewHelper) {
-                val shipment = trackingSim.findShipment(id)
+                val shipment = trackingServer.findShipment(id)
                 Column {
                     if (shipment != null) {
                         val view = TrackerViewHelper(shipment)
@@ -82,14 +81,10 @@ fun App() {
 
             }
         }
-
-
     }
 }
-val trackingSim = TrackingSimulator()
 val trackingServer = TrackingServer()
 fun main() = application {
-    trackingServer.startServer()
     Window(onCloseRequest = ::exitApplication) {
         App()
     }

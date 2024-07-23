@@ -17,7 +17,7 @@ fun App() {
     var inputText by remember { mutableStateOf("") }
     val viewHelper = remember { mutableStateListOf<String>() }
     val coroutineScope = rememberCoroutineScope()
-    coroutineScope.launch { trackingServer.runServer() }
+    coroutineScope.launch { TrackingServer.runServer() }
 
     MaterialTheme {
         Column {
@@ -36,7 +36,7 @@ fun App() {
                 }
             }
             for (id in viewHelper) {
-                val shipment = trackingServer.findShipment(id)
+                val shipment = TrackingServer.findShipment(id)
                 Column {
                     if (shipment != null) {
                         val view = TrackerViewHelper(shipment)
@@ -83,7 +83,6 @@ fun App() {
         }
     }
 }
-val trackingServer = TrackingServer()
 fun main() = application {
     Window(onCloseRequest = ::exitApplication) {
         App()

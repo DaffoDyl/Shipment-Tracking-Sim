@@ -8,7 +8,7 @@ import io.ktor.server.routing.*
 import updateBehavior.*
 import java.io.File
 
-class TrackingServer {
+object TrackingServer {
     private val shipments: MutableList<Shipment> = mutableListOf()
     private val shipmentUpdates = mapOf(
         Pair("canceled",  StatusUpdate()),

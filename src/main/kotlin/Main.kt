@@ -33,7 +33,9 @@ fun App() {
                     modifier = Modifier.weight(1f),
                 )
                 Button(
-                    onClick = { viewHelper.add(inputText) },
+                    onClick = { viewHelper.add(inputText)
+                              inputText = ""
+                              },
                     modifier = Modifier.height(height = 56.dp)
                 ) {
                     Text("Track")

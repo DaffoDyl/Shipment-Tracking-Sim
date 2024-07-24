@@ -1,6 +1,6 @@
 package updateBehavior
 
-import Shipment
+import shipmentTypes.Shipment
 import ShippingUpdate
 
 class TimeUpdate: UpdateBehavior {

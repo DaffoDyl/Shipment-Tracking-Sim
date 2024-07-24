@@ -1,6 +1,6 @@
 package updateBehavior
 
-import Shipment
+import shipmentTypes.Shipment
 
 open class NotesUpdate: UpdateBehavior {
 

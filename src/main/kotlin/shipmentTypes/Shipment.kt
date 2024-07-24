@@ -1,4 +1,10 @@
-class Shipment(
+package shipmentTypes
+
+import ShipmentObserver
+import ShipmentSubject
+import ShippingUpdate
+
+open class Shipment(
 
     var id: String,
 

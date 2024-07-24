@@ -2,6 +2,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import java.text.SimpleDateFormat
 import java.util.*
+import shipmentTypes.Shipment
 
 class TrackerViewHelper(shipment: Shipment): ShipmentObserver {
 

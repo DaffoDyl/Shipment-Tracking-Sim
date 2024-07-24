@@ -1,0 +1,4 @@
+package shipmentTypesTest
+
+class ExpressShipmentTest {
+}

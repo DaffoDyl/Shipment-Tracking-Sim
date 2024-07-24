@@ -2,7 +2,7 @@ import shipmentTypes.*
 
 class ShipmentPacker {
 
-    fun packShipment(shipmentInfo: List<String>): Shipment {
+    fun packShipment(shipmentInfo: List<String>): Shipment { //Each line in shipmentInfo contains in order: {status, id, timestamp, shipment type}
         val status = shipmentInfo[0]
         val id = shipmentInfo[1]
         val type = shipmentInfo[3]

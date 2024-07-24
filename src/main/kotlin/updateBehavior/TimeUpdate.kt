@@ -12,6 +12,7 @@ class TimeUpdate: UpdateBehavior {
         shipment?.addUpdate(ShippingUpdate(shipment.status, status, timestamp))
         shipment?.status = status
         shipment?.expectedDeliveryTimestamp = expectedTimeStamp
+        shipment?.handleShipmentType(expectedTimeStamp)
     }
 
 }

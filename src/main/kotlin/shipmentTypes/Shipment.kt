@@ -4,7 +4,7 @@ import ShipmentObserver
 import ShipmentSubject
 import ShippingUpdate
 
-open class Shipment(id: String, status: String): ShipmentSubject {
+abstract class Shipment(id: String, status: String): ShipmentSubject {
 
     var id: String = id
         set(value){
@@ -23,10 +23,6 @@ open class Shipment(id: String, status: String): ShipmentSubject {
         }
 
     var expectedDeliveryTimestamp: Long = 0
-        set(value){
-            field = value
-            notifyObservers()
-        }
 
     var notes: MutableList<String> = mutableListOf()
         private set
@@ -49,6 +45,8 @@ open class Shipment(id: String, status: String): ShipmentSubject {
             it.notify(this)
         }
     }
+
+    abstract fun handleShipmentType(updateTimestamp: Long)
 
     fun addNote(note: String) {
         notes.add(note)

@@ -14,9 +14,13 @@ import kotlinx.coroutines.launch
 @Composable
 @Preview
 fun App() {
+
     var inputText by remember { mutableStateOf("") }
+
     val viewHelper = remember { mutableStateListOf<String>() }
+
     val coroutineScope = rememberCoroutineScope()
+
     coroutineScope.launch { TrackingServer.runServer() }
 
     MaterialTheme {
@@ -83,6 +87,7 @@ fun App() {
         }
     }
 }
+
 fun main() = application {
     Window(onCloseRequest = ::exitApplication) {
         App()

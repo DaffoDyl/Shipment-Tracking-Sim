@@ -9,7 +9,9 @@ import updateBehavior.*
 import java.io.File
 
 object TrackingServer {
+
     private val shipments: MutableList<Shipment> = mutableListOf()
+
     private val shipmentUpdates = mapOf(
         Pair("canceled",  StatusUpdate()),
         Pair("delivered", StatusUpdate()),
@@ -23,11 +25,13 @@ object TrackingServer {
     fun addShipment(shipment: Shipment) {
         shipments.add(shipment)
     }
+
     fun findShipment(id: String) : Shipment? {
         return shipments.find {
-            it.getId() == id
+            it.id == id
         }
     }
+
     fun runServer() {
         embeddedServer(Netty, 8080) {
             routing {
@@ -47,4 +51,5 @@ object TrackingServer {
             }
         }.start(wait = false)
     }
+
 }

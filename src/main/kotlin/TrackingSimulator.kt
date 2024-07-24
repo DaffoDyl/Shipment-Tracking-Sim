@@ -3,7 +3,9 @@ import updateBehavior.*
 import java.io.File
 
 class TrackingSimulator() {
+
     private val shipments: MutableList<Shipment> = mutableListOf()
+
     private val shipmentUpdates = mapOf(
         Pair("canceled",  StatusUpdate()),
         Pair("delivered", StatusUpdate()),
@@ -17,11 +19,13 @@ class TrackingSimulator() {
     fun addShipment(shipment: Shipment) {
         shipments.add(shipment)
     }
+
     fun findShipment(id: String) : Shipment? {
         return shipments.find {
-            it.getId() == id
+            it.id == id
         }
     }
+
     suspend fun runSimulation()  {
         val updates = mutableListOf<List<String>>()
 
@@ -36,4 +40,5 @@ class TrackingSimulator() {
             delay(1000L)
         }
     }
+
 }
